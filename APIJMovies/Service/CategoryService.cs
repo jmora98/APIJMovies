@@ -17,17 +17,17 @@ namespace APIJMovies.Service
             _mapper = mapper;
         }
 
-        public Task<bool> CategoryExistsByIdAsync(int id)
+        public async Task<bool> CategoryExistsByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> CreateCategoryAsync(Category category)
+        public async Task<bool> CreateCategoryAsync(Category category)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteCategoryAsync(int id)
+        public async Task<bool> DeleteCategoryAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -39,17 +39,18 @@ namespace APIJMovies.Service
 
         }
 
-        public Task<CategoryDto> GetCategoryAsync(int id)
+        public async Task<CategoryDto> GetCategoryAsync(int id)
+        {
+            var catetegories = await _categoryRepository.GetCategoryAsync(id); 
+            return _mapper.Map<CategoryDto>(catetegories); 
+        }
+
+        public async Task<bool> GetCategoryByNameAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetCategoryByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateCategoryAsync(Category category)
+        public async Task<bool> UpdateCategoryAsync(Category category)
         {
             throw new NotImplementedException();
         }
