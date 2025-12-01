@@ -1,4 +1,9 @@
 using APIJMovies.DAL;
+using APIJMovies.MovieMapper;
+using APIJMovies.Repository;
+using APIJMovies.Repository.IRepository;
+using APIJMovies.Service;
+using APIJMovies.Service.IService;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,6 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddAutoMapper(x => x.AddProfile<Mappers>());
+
+//dependecias del servicio
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
+//Depedencias del repositorio
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
 builder.Services.AddControllers();

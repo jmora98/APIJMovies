@@ -1,8 +1,9 @@
 ﻿using APIJMovies.DAL;
 using APIJMovies.DAL.Models;
+using APIJMovies.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIJMovies.Repository.IRepository
+namespace APIJMovies.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
@@ -50,11 +51,14 @@ namespace APIJMovies.Repository.IRepository
 
         public async Task<ICollection<Category>> GetCategoriesAsync()
         {
-            return await _context.Categories
+            var categories = await _context.Categories
                 .AsNoTracking()
                 .OrderBy(c => c.Name)
                 .ToListAsync();
-            
+
+            return categories;
+
+
         }
 
         public async Task<Category> GetCategoryAsync(int id) 
