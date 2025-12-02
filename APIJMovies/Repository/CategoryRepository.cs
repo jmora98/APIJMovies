@@ -87,6 +87,11 @@ namespace APIJMovies.Repository
 
         }
 
+        Task<bool> ICategoryRepository.CategoryExistsByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         private async Task<bool> SaveAsync()
         {
             return await _context
