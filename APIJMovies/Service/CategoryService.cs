@@ -1,4 +1,5 @@
-﻿using APIJMovies.DAL.Models;
+﻿using API.J.Movies.DAL.Dtos.Category;
+using APIJMovies.DAL.Models;
 using APIJMovies.DAL.Models.Dtos;
 using APIJMovies.Repository;
 using APIJMovies.Repository.IRepository;
@@ -22,9 +23,31 @@ namespace APIJMovies.Service
             throw new NotImplementedException();
         }
 
-        public async Task<bool> CreateCategoryAsync(Category category)
+
+        //
+        public async Task<CategoryDto> CreateCategoryAsync(CategoryCreateUpdateDto categoryCreateDto)
         {
-            throw new NotImplementedException();
+            //Validar si la categoría ya existe
+            var categoryExists = await _categoryRepository.GetCategoryByNameAsync(categoryCreateDto.Name);
+
+            if (categoryExists)
+            {
+                throw new InvalidOperationException($"Ya existe una categoría con el nombre de '{categoryCreateDto.Name}'");
+            }
+
+            //Mapear el DTO a la entidad
+            var category = _mapper.Map<Category>(categoryCreateDto);
+
+            //Crear la categoría en el repositorio
+            var categoryCreated = await _categoryRepository.CreateCategoryAsync(category);
+
+            if (!categoryCreated)
+            {
+                throw new Exception("Ocurrió un error al crear la categoría.");
+            }
+
+            //Mapear la entidad creada a DTO
+            return _mapper.Map<CategoryDto>(category);
         }
 
         public async Task<bool> DeleteCategoryAsync(int id)

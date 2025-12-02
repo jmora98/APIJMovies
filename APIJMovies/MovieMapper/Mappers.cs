@@ -1,4 +1,5 @@
-﻿using APIJMovies.DAL.Models;
+﻿using API.J.Movies.DAL.Dtos.Category;
+using APIJMovies.DAL.Models;
 using APIJMovies.DAL.Models.Dtos;
 using AutoMapper;
 
@@ -9,7 +10,7 @@ namespace APIJMovies.MovieMapper
         public Mappers()
         {
             CreateMap<Category,CategoryDto>().ReverseMap();
-            CreateMap<Category,CategoryCreateDto>().ReverseMap();
+            CreateMap<Category, CategoryCreateUpdateDto>().ReverseMap();
         }
     }
 }
