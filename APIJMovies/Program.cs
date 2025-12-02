@@ -22,6 +22,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 //Depedencias del repositorio
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+//Movie
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IMovieService, MovieService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

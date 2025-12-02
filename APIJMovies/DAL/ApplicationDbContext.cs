@@ -13,6 +13,8 @@ namespace APIJMovies.DAL
             
         //definir los DBset, tablas que voy a utilizar en mi app
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+
 
     }
 }

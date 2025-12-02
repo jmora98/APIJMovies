@@ -31,7 +31,7 @@ namespace APIJMovies.Service
 
         //
         public async Task<CategoryDto> CreateCategoryAsync(CategoryCreateUpdateDto categoryCreateDto)
-        {
+        { 
             //Validar si la categoría ya existe
             var categoryExists = await _categoryRepository.CategoryExistsByNameAsync(categoryCreateDto.Name);
 
